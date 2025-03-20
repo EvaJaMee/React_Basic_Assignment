@@ -18,7 +18,7 @@ export const SearchRecipe = ({ onClick }) => {
     setFilterRecipes(e.target.value);
   };
 
-  const recipeFilter = recipes.filter((recipe) => {
+  const recipesFilter = recipes.filter((recipe) => {
     // all recipes
     if (filterRecipes === "all") return recipe;
     // pescatarian recipes
@@ -36,7 +36,7 @@ export const SearchRecipe = ({ onClick }) => {
   });
 
   // filter recipes from search input
-  const matchRecipes = recipeFilter.filter((recipe) => {
+  const matchRecipes = recipesFilter.filter((recipe) => {
     return recipe.recipe.label
       .toLowerCase()
       .includes(searchField.toLowerCase());
@@ -54,7 +54,7 @@ export const SearchRecipe = ({ onClick }) => {
         boxSizing="borderbox"
       >
         {/*radio buttons*/}
-        <RadioButton value={recipeFilter} onChange={handleFilter} />
+        <RadioButton value={filterRecipes} onChange={handleFilter} />
         <SearchInput onChange={(e) => setSearchField(e.target.value)} />
       </Flex>
       <RecipeItems onClick={onClick} recipes={matchRecipes} />
