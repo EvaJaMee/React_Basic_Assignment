@@ -51,6 +51,7 @@ export const RecipeItem = ({ recipe, onClick }) => {
           borderTopRadius="25px"
           src={recipe.image}
           alt="recipe"
+          objectFit="cover"
         />
       </Box>
       <CardHeader h="100px">
