@@ -49,7 +49,10 @@ export const RecipeChoice = ({ recipe, onClick }) => {
           <Heading size="lg">{recipe.label}!</Heading>
         </Flex>
         <Flex direction="column" alignItems="center" gap={5} mt="3rem">
-          <Box h="250px" w="400px">
+          <Box
+            h={{ base: "200px", md: "250px" }}
+            w={{ base: "90%", md: "400px" }}
+          >
             <Image
               h="100%"
               w="100%"
@@ -57,36 +60,39 @@ export const RecipeChoice = ({ recipe, onClick }) => {
               borderRadius="10px"
               src={recipe.image}
               alt="recipe"
+              objectFit="cover"
             />
           </Box>
-          <Flex direction="column" gap={3}>
-            <Flex gap={5}>
-              <Flex gap={2}>
-                <Text as="b" fontSize="md">
-                  Meal Type:
-                </Text>
-                <Text fontSize="md">{recipe.mealType}</Text>
-              </Flex>
-              <Flex gap={2}>
-                <Text as="b" fontSize="md">
-                  Dish Type:
-                </Text>
-                <Text fontSize="md">{recipe.dishType}</Text>
-              </Flex>
+          <Flex
+            direction="row"
+            gap={5}
+            mt="1rem"
+            flexWrap="wrap"
+            justifyContent="center"
+          >
+            <Flex gap={1}>
+              <Text as="b" fontSize="sm">
+                Meal Type:
+              </Text>
+              <Text fontSize="sm">{recipe.mealType}</Text>
             </Flex>
-            <Flex gap={5}>
-              <Flex gap={2}>
-                <Text as="b" fontSize="md">
-                  Total cooking time:
-                </Text>
-                <Text fontSize="md">{recipe.totalTime} minutes</Text>
-              </Flex>
-              <Flex gap={2}>
-                <Text as="b" fontSize="md">
-                  Servings:
-                </Text>
-                <Text fontSize="md">{recipe.yield} person</Text>
-              </Flex>
+            <Flex gap={1}>
+              <Text as="b" fontSize="sm">
+                Dish Type:
+              </Text>
+              <Text fontSize="sm">{recipe.dishType}</Text>
+            </Flex>
+            <Flex gap={1}>
+              <Text as="b" fontSize="sm">
+                Total cooking time:
+              </Text>
+              <Text fontSize="sm">{recipe.totalTime} minutes</Text>
+            </Flex>
+            <Flex gap={1}>
+              <Text as="b" fontSize="sm">
+                Portions:
+              </Text>
+              <Text fontSize="sm">{recipe.yield} person</Text>
             </Flex>
           </Flex>
         </Flex>
@@ -96,17 +102,18 @@ export const RecipeChoice = ({ recipe, onClick }) => {
         direction="column"
         flexWrap="wrap"
         gap={2}
-        align="flexStart"
-        ml="3rem"
+        align="center"
+        justify="center"
+        textAlign="left"
       >
         <Flex
           direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
-          align="flex-start"
-          justify="flex-start"
+          align="left"
+          justify="left"
           gap={5}
           m="10px auto"
         >
-          {/* Show the appropiate label when applicable */}
+          {/* filter the recipes to show the label only when applicable */}
           {recipe.dietLabels.length > 0 ? (
             <Flex
               direction={{
@@ -117,11 +124,13 @@ export const RecipeChoice = ({ recipe, onClick }) => {
               }}
               flexWrap="wrap"
               gap={2}
+              align="left"
+              justify="left"
             >
               <Text as="b">Diet Labels:</Text>
-              <Text>
+              <Box>
                 <DietLabels recipe={recipe} />
-              </Text>
+              </Box>
             </Flex>
           ) : null}
 
@@ -135,18 +144,20 @@ export const RecipeChoice = ({ recipe, onClick }) => {
               }}
               flexWrap="wrap"
               gap={2}
+              align="left"
+              justify="left"
             >
               <Text as="b">Cautions:</Text>
-              <Text>
+              <Box>
                 <Cautions recipe={recipe} />
-              </Text>
+              </Box>
             </Flex>
           ) : null}
         </Flex>
         <Flex
           direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
-          align="flex-start"
-          justify="flex-start"
+          align="center"
+          justify="center"
           textAlign="left"
           gap={5}
           m="10px auto"
@@ -158,6 +169,8 @@ export const RecipeChoice = ({ recipe, onClick }) => {
               direction="row"
               flexWrap="wrap"
               gap={{ base: "1", sm: "1", md: "2", lg: "3" }}
+              align="left"
+              justify="left"
             >
               <HealthLabels recipe={recipe} />
             </Flex>
@@ -170,8 +183,8 @@ export const RecipeChoice = ({ recipe, onClick }) => {
               direction="column"
               flexWrap="wrap"
               gap={1}
-              align="flex-start"
-              justify="flex-start"
+              align="left"
+              justify="left"
             >
               <Ingredients recipe={recipe} />
             </Flex>
@@ -179,7 +192,7 @@ export const RecipeChoice = ({ recipe, onClick }) => {
         </Flex>
       </CardBody>
       <CardFooter>
-        <Flex>
+        <Flex align="center" justify="center">
           <Nutrients recipe={recipe} />
         </Flex>
       </CardFooter>
