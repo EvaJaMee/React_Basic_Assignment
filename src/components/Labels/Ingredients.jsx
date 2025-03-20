@@ -1,24 +1,13 @@
-import { Text } from "@chakra-ui/react";
-import uuid from "react-uuid";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export const Ingredients = ({ recipe }) => {
-  // selecting ingredients
-  const ingredients = recipe.ingredientLines;
-
-  // return each ingredient seperately
-  return ingredients.map((ingredient) => {
-    return (
-      <Text
-        key={uuid()}
-        fontSize={{
-          base: "0.7rem",
-          sm: "0.8rem",
-          md: "0.9rem",
-          lg: "1rem",
-        }}
-      >
-        <Text>{ingredient}</Text>
-      </Text>
-    );
-  });
+  return (
+    <Box>
+      {recipe.ingredients.map((ingredient, index) => (
+        <Flex key={index} direction="row" align="left" justify="left">
+          <Text>{ingredient.text}</Text>
+        </Flex>
+      ))}
+    </Box>
+  );
 };
